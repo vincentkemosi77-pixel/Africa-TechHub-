@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Africa TechHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --gold: #c8a84b;
+    --gold-light: #e2c97e;
+    --green: #1a6b3c;
+    --green-light: #2d9b5a;
+    --red: #b03a2e;
+    --gray: #6b6b6b;
+    --light-gray: #efefec;
+    --card-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245, 244, 240, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 800;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--green) !important; color: var(--white) !important; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    padding: 68px 5% 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #f5f4f0 60%, #e8f5ef 100%);
+    z-index: 0;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    right: 0; top: 0;
+    width: 55%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 30px,
+        rgba(200, 168, 75, 0.06) 30px,
+        rgba(200, 168, 75, 0.06) 31px
+      );
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200, 168, 75, 0.15);
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    color: #8a6e1e;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 span { color: var(--green); }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1.5px solid var(--black);
+    color: var(--black);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: var(--black); color: var(--white); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .stat { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--black);
+    letter-spacing: -1px;
+  }
+  .stat-num span { color: var(--gold); }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 2px;
+  }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative; z-index: 1;
+    animation: fadeIn 0.8s 0.3s ease both;
+  }
+
+  .hero-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    position: relative;
+  }
+
+  .hero-card-top {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    background: var(--light-gray);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--black);
+  }
+
+  .card-sub { font-size: 0.8rem; color: var(--gray); }
+
+  .service-pills {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;
+  }
+
+  .pill {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .pill-green { background: #e8f5ef; color: var(--green); }
+  .pill-gold { background: #fdf6e3; color: #8a6e1e; }
+  .pill-red { background: #fdecea; color: var(--red); }
+
+  .mini-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+
+  .mini-card {
+    background: var(--light-gray);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .mini-card-icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .mini-card-label { font-size: 0.75rem; color: var(--gray); font-weight: 500; }
+
+  .floating-badge {
+    position: absolute;
+    top: -16px; right: -16px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    padding: 8px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(200,168,75,0.4);
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 5%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--green);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--gold);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--gray);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* SERVICES */
+  #services { background: var(--black); color: var(--white); }
+  #services .section-label { color: var(--gold); }
+  #services h2 { color: var(--white); }
+  #services .section-sub { color: #aaa; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+  }
+
+  .service-card p {
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .service-items {
+    margin-top: 1rem;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+
+  .service-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.83rem; color: #bbb;
+  }
+
+  .service-item::before {
+    content: '→';
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+
+  /* ABOUT */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-box {
+    background: linear-gradient(135deg, var(--green) 0%, #0d4a29 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-img-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 20px,
+      rgba(255,255,255,0.03) 20px,
+      rgba(255,255,255,0.03) 21px
+    );
+  }
+
+  .about-img-content { position: relative; z-index: 1; }
+
+  .about-big-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .about-img-label { font-size: 0.9rem; opacity: 0.8; }
+
+  .about-feats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2rem;
+  }
+
+  .about-feat {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+
+  .about-feat-icon { font-size: 1.2rem; margin-bottom: 6px; }
+  .about-feat-label { font-size: 0.8rem; opacity: 0.85; font-weight: 500; }
+
+  .about-content h2 { margin-bottom: 1.2rem; }
+
+  .about-text {
+    color: var(--gray);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .values {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 2rem;
+  }
+
+  .value-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 10px;
+  }
+
+  .value-dot {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .value-text h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+  }
+
+  .value-text p { font-size: 0.83rem; color: var(--gray); }
+
+  /* CONTACT */
+  #contact { background: var(--light-gray); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h2 { margin-bottom: 1rem; }
+
+  .contact-methods {
+    display: flex; flex-direction: column; gap: 16px; margin-top: 2rem;
+  }
+
+  .contact-method {
+    display: flex; align-items: center; gap: 14px;
+    background: white;
+    padding: 1.2rem 1.4rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .contact-method-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--green);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    color: white;
+  }
+
+  .contact-method-label { font-size: 0.75rem; color: var(--gray); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-method-value { font-weight: 500; font-size: 0.95rem; color: var(--black); }
+
+  /* FORM */
+  .contact-form {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  .contact-form h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e0e0dc;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--black);
+    background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--green);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-submit:hover { background: var(--green-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: #888;
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: #888;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy { font-size: 0.8rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* WHATSAPP BUTTON */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeUp 0.6s 0.8s ease both;
+  }
+
+  .whatsapp-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55);
+  }
+
+  .whatsapp-btn svg {
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-pulse {
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 14px; height: 14px;
+    background: #ff3b30;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    #home { grid-template-columns: 1fr; padding-top: calc(68px + 2rem); }
+    .hero-visual { display: none; }
+    #about { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    h1 { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">
+    <div class="logo-icon">AT</div>
+    Africa TechHub
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🌍 Africa's Premier Tech Hub</div>
+    <h1>Repair. Learn.<br><span>Upgrade.</span></h1>
+    <p class="hero-desc">Your one-stop destination for phone & device repair, tech training, and the latest gadgets — bringing world-class technology solutions to Africa.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-label">Devices Repaired</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="stat-label">Students Trained</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="floating-badge">✅ Open Today</div>
+      <div class="hero-card-top">
+        <div class="card-icon">🔧</div>
+        <div>
+          <div class="card-title">Africa TechHub</div>
+          <div class="card-sub">Technology Solutions Center</div>
+        </div>
+      </div>
+      <div class="service-pills">
+        <span class="pill pill-green">📱 Phone Repair</span>
+        <span class="pill pill-gold">🎓 Tech Training</span>
+        <span class="pill pill-red">🛒 Tech Shop</span>
+      </div>
+      <div class="mini-cards">
+        <div class="mini-card">
+          <div class="mini-card-icon">⚡</div>
+          <div class="mini-card-label">Same Day Repair</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-icon">🏆</div>
+          <div class="mini-card-label">Certified Experts</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-icon">📚</div>
+          <div class="mini-card-label">Online Courses</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-icon">🚚</div>
+          <div class="mini-card-label">Free Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What We Offer</div>
+  <h2>Our Services</h2>
+  <p class="section-sub">From fixing your broken screen to launching your tech career — we've got you covered.</p>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">📱</span>
+      <h3>Phone & Device Repair</h3>
+      <p>Fast, reliable repairs by certified technicians with genuine parts and a warranty guarantee.</p>
+      <div class="service-items">
+        <div class="service-item">Screen replacement</div>
+        <div class="service-item">Battery replacement</div>
+        <div class="service-item">Water damage repair</div>
+        <div class="service-item">Software troubleshooting</div>
+        <div class="service-item">Laptop & tablet repair</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">🎓</span>
+      <h3>Tech Training & Courses</h3>
+      <p>Learn in-demand tech skills from industry professionals. Hands-on, practical, and job-ready training.</p>
+      <div class="service-items">
+        <div class="service-item">Mobile phone repair course</div>
+        <div class="service-item">Web development</div>
+        <div class="service-item">Graphic design</div>
+        <div class="service-item">Digital marketing</div>
+        <div class="service-item">Computer fundamentals</div>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">🛒</span>
+      <h3>Tech Products & Gadgets</h3>
+      <p>Shop the latest phones, accessories, and tech gadgets at competitive prices with genuine warranties.</p>
+      <div class="service-items">
+        <div class="service-item">Smartphones & tablets</div>
+        <div class="service-item">Phone accessories</div>
+        <div class="service-item">Laptop & computers</div>
+        <div class="service-item">Cables & chargers</div>
+        <div class="service-item">Smart devices</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-img-box">
+      <div class="about-img-content">
+        <div class="about-big-text">5+</div>
+        <div class="about-img-label">Years of Excellence in Tech</div>
+        <div class="about-feats">
+          <div class="about-feat">
+            <div class="about-feat-icon">🔧</div>
+            <div class="about-feat-label">Expert Repairs</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon">🌍</div>
+            <div class="about-feat-label">Pan-African Vision</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon">🎓</div>
+            <div class="about-feat-label">Skilled Trainers</div>
+          </div>
+          <div class="about-feat">
+            <div class="about-feat-icon">💬</div>
+            <div class="about-feat-label">24/7 Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-content reveal">
+    <div class="section-label">Who We Are</div>
+    <h2>Built for Africa's Tech Future</h2>
+    <p class="about-text">Africa TechHub was founded with a clear mission: to make world-class technology services and education accessible to every African. We believe technology is the key to unlocking Africa's full potential.</p>
+    <p class="about-text">Whether you need your device fixed, want to start a career in tech, or are looking to buy quality gadgets — we are the trusted hub for all things technology.</p>
+
+    <div class="values">
+      <div class="value-item">
+        <div class="value-dot">⚡</div>
+        <div class="value-text">
+          <h4>Speed & Quality</h4>
+          <p>Same-day repairs with no compromise on quality or genuine parts.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot">🤝</div>
+        <div class="value-text">
+          <h4>Community First</h4>
+          <p>We empower local youth through affordable, practical tech training.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot">🔒</div>
+        <div class="value-text">
+          <h4>Trust & Transparency</h4>
+          <p>Honest pricing, clear timelines, and warranties on every service.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2>Let's Talk Tech</h2>
+      <p class="section-sub">Have a broken device? Want to enroll in a course? Looking for a gadget? Reach out — we respond fast.</p>
+
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-method-icon">📞</div>
+          <div>
+            <div class="contact-method-label">Phone / WhatsApp</div>
+            <div class="contact-method-value">+234 000 0000 000</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">📧</div>
+          <div>
+            <div class="contact-method-label">Email</div>
+            <div class="contact-method-value">hello@africatechhub.com</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">📍</div>
+          <div>
+            <div class="contact-method-label">Location</div>
+            <div class="contact-method-value">Africa TechHub Center</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">🕐</div>
+          <div>
+            <div class="contact-method-label">Hours</div>
+            <div class="contact-method-value">Mon–Sat, 8am – 7pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <h3>Send us a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Doe" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="+234 000 0000 000" />
+      </div>
+      <div class="form-group">
+        <label>What do you need?</label>
+        <select>
+          <option>Phone or Device Repair</option>
+          <option>Tech Training / Course</option>
+          <option>Buy a Gadget / Product</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us more about what you need..."></textarea>
+      </div>
+      <button class="btn-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/2340000000000?text=Hello%20Africa%20TechHub!%20I%20need%20help%20with..." class="whatsapp-btn" target="_blank" rel="noopener">
+  <div class="whatsapp-pulse"></div>
+  <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.468.644 4.784 1.768 6.8L2 30l7.4-1.736A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.56 11.56 0 01-5.888-1.608l-.424-.252-4.392 1.028 1.052-4.272-.276-.44A11.56 11.56 0 014.4 16C4.4 9.596 9.596 4.4 16 4.4S27.6 9.596 27.6 16 22.404 27.6 16 27.6zm6.336-8.672c-.348-.176-2.056-1.012-2.376-1.128-.32-.116-.552-.176-.784.176-.232.348-.9 1.128-1.104 1.36-.2.232-.404.26-.752.088-.348-.176-1.468-.54-2.796-1.72-1.032-.92-1.728-2.056-1.932-2.404-.2-.348-.02-.536.152-.708.156-.156.348-.404.524-.608.172-.2.228-.348.344-.58.112-.232.056-.436-.028-.612-.088-.176-.784-1.888-1.072-2.584-.284-.68-.572-.588-.784-.6-.2-.008-.432-.012-.664-.012-.232 0-.608.088-.924.436-.32.348-1.22 1.192-1.22 2.904s1.248 3.368 1.424 3.6c.176.232 2.456 3.748 5.952 5.256.832.36 1.48.576 1.988.736.836.264 1.596.228 2.196.14.672-.1 2.056-.84 2.348-1.652.292-.812.292-1.508.204-1.652-.084-.148-.316-.232-.664-.408z"/>
+  </svg>
+  Chat on WhatsApp
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Africa <span>TechHub</span></div>
+  <ul class="footer-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Africa TechHub. All rights reserved.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Smooth nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
